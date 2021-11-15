@@ -1,22 +1,31 @@
 package com.example.MYBoard.service;
 
+import com.example.MYBoard.dto.PostDto;
+import com.example.MYBoard.entity.Post;
 import com.example.MYBoard.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by hehesi2007@gmail.com on 2021-11-15
- * Blog : http://mvmvm.tistory.com
- * Github : http://github.com/lsh0902
- */
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
 
-    public void createPost() {
+    public void createPost(PostDto postDto) {
+        Post post = new Post();
+        post.setCreateDate(LocalDate.now());
+        post.setBody(postDto.getBody());
+        post.setTitle(postDto.getTitle());
+        post.setUser(postDto.getUser());
+        postRepository.save(post);
+    }
 
+    public List<Post> getPost() {
+        return postRepository.findAll();
     }
 
 }

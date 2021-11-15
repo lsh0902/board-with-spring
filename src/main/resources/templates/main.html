@@ -8,13 +8,21 @@
     <h1>게시물 리스트</h1>
     <table border="1">
         <tr>
-            <th>이름</th>
+            <th>일련번호</th>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>본문</th>
+            <th>작성일자</th>
         </tr>
         <tr th:each="post : ${postList}">
+            <td th:text="${post.id}"></td>
+            <td th:text="${post.user}"></td>
+            <td th:text="${post.title}"></td>
             <td th:text="${post.body}"></td>
+            <td th:text="${post.createDate}"></td>
         </tr>
     </table>
-    <button type="button" onclick="location.href='write.html'">글쓰기</button>
+    <button type="button" onclick="location.href='write'">글쓰기</button>
 
 </body>
 </html>

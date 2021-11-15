@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 /**
  * Created by hehesi2007@gmail.com on 2021-11-15
@@ -26,4 +27,6 @@ public class Post {
 
     private String title;
     private String body;
+    private LocalDate createDate;
+    private String user;
 }

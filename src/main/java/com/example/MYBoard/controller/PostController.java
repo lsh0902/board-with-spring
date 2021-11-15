@@ -23,25 +23,21 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/main")
-    public String mainPage() {
-        return "main";
+    @GetMapping("write")
+    public String writePage() {
+        return "write";
     }
 
     @GetMapping("/posts")
     public String get(Model model) {
-        List<PostDto> strs = new ArrayList<>();
-        strs.add(new PostDto("as","승환 짱","sdg"));
-        strs.add(new PostDto("as","허줜 럽","sdg"));
-        model.addAttribute("postList", strs);
-
+        model.addAttribute("postList", postService.getPost());
         return "main";
     }
 
     @PostMapping("/posts")
     public String create(@ModelAttribute PostDto postDto) {
-        System.out.println("========[post]========"+ postDto.getBody());
         //쓰기 작업
-        return "main";
+        postService.createPost(postDto);
+        return "redirect:/posts";
     }
 }
